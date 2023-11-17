@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.uv.DSWeb_practica06.data.Empleado;
-import org.uv.DSWeb_practica06.data.RepositoryEmpleado;
+import org.uv.DSWeb_practica06.repository.RepositoryEmpleado;
 
 /**
  *
@@ -44,10 +44,15 @@ public class ControllerEmpleados {
         return repositoryEmpleado.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Object get(@PathVariable Long id) {
-        Optional<Empleado> optRes = repositoryEmpleado.findById(id);
-        return optRes.isPresent() ? optRes.get() : null;
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        if (repositoryEmpleado.existsById(id)) {
+            repositoryEmpleado.deleteById(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/{id}")
@@ -67,15 +72,6 @@ public class ControllerEmpleados {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
-        if (repositoryEmpleado.existsById(id)) {
-            repositoryEmpleado.deleteById(id);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     @GetMapping("msg")
     public String msg() {
