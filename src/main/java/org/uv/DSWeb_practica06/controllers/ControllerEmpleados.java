@@ -53,15 +53,32 @@ public class ControllerEmpleados {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Object input) {
-        return null;
+    public ResponseEntity<Empleado> put(@PathVariable Long id, @RequestBody Empleado empleado) {
+        Optional<Empleado> optEmpleado = repositoryEmpleado.findById(id);
+
+        if (optEmpleado.isPresent()) {
+            Empleado empleadoExistente = optEmpleado.get();
+            empleadoExistente.setNombre(empleado.getNombre());
+            empleadoExistente.setDireccion(empleado.getDireccion());
+            empleadoExistente.setTelefono(empleado.getTelefono());
+
+            Empleado empleadoActualizadoRes = repositoryEmpleado.save(empleadoExistente);
+            return ResponseEntity.ok(empleadoActualizadoRes);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
     
 
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
-        return null;
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        if (repositoryEmpleado.existsById(id)) {
+            repositoryEmpleado.deleteById(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
     
 }
