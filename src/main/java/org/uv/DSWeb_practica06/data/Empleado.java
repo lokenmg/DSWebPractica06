@@ -25,11 +25,11 @@ import java.io.Serializable;
 public class Empleado implements Serializable{
     
     @Id 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empleados_id_seq")
-    @SequenceGenerator(name = "empleados_id_seq", sequenceName = "empleados_id_seq",
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empleados_idempleado_seq")
+    @SequenceGenerator(name = "empleados_idempleado_seq", sequenceName = "empleados_idempleado_seq",
             initialValue = 1, allocationSize = 1)
     @Column(name = "idempleado")
-    private Long id;
+    private Long idempleado;
     
     @NotNull
     @Column(name = "nombre")
@@ -43,8 +43,8 @@ public class Empleado implements Serializable{
     @Column(name = "telefono")
     private String telefono;
 
-    public Empleado(long id, String nombre, String direccion, String telefono) {
-        this.id = id;
+    public Empleado(Long idempleado, String nombre, String direccion, String telefono) {
+        this.idempleado = idempleado;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -54,11 +54,11 @@ public class Empleado implements Serializable{
     }
     
     public long getId() {
-        return id;
+        return idempleado;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.idempleado = id;
     }
 
     public String getNombre() {
