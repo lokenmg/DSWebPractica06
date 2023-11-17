@@ -33,7 +33,7 @@ public class DetalleVenta implements Serializable {
     private Long idDetalleVenta;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idVenta", referencedColumnName = "idVenta")    
+    @JoinColumn(name = "idventa", referencedColumnName = "idventa")    
     private Venta venta;
     
     @Column(name = "idproducto")

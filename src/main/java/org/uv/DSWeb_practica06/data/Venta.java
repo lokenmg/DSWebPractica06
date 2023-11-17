@@ -40,7 +40,7 @@ public class Venta implements Serializable {
     private BigDecimal total;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idEmpleado", referencedColumnName = "idEmpleado")
+    @JoinColumn(name = "idempleado", referencedColumnName = "idempleado")
     private Empleado empleado;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "venta")
