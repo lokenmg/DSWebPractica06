@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.uv.DSWeb_practica06.data.Empleado;
-import org.uv.DSWeb_practica06.data.RepositoryEmpleado;
+import org.uv.DSWeb_practica06.repository.RepositoryEmpleado;
 
 /**
  *
