@@ -4,6 +4,7 @@
  */
 package org.uv.DSWeb_practica06.data;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 
 /**
@@ -23,10 +25,11 @@ import javax.validation.constraints.NotNull;
 public class Empleado implements Serializable{
     
     @Id 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empleados_id_seq")
-    @SequenceGenerator(name = "empleados_id_seq", sequenceName = "empleados_id_seq",
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empleados_idempleado_seq")
+    @SequenceGenerator(name = "empleados_idempleado_seq", sequenceName = "empleados_idempleado_seq",
             initialValue = 1, allocationSize = 1)
-    private long id;
+    @Column(name = "idempleado")
+    private Long idempleado;
     
     @NotNull
     @Column(name = "nombre")
@@ -40,8 +43,8 @@ public class Empleado implements Serializable{
     @Column(name = "telefono")
     private String telefono;
 
-    public Empleado(long id, String nombre, String direccion, String telefono) {
-        this.id = id;
+    public Empleado(Long idempleado, String nombre, String direccion, String telefono) {
+        this.idempleado = idempleado;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -51,11 +54,11 @@ public class Empleado implements Serializable{
     }
     
     public long getId() {
-        return id;
+        return idempleado;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.idempleado = id;
     }
 
     public String getNombre() {
